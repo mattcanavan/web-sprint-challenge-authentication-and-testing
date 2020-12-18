@@ -26,10 +26,11 @@ test('sanity', () => {
 /// testing api/auth/ endpoints 
 describe('[POST] /register', () => {
   it('returns new user and hashed password', async () => {
-    const res = await request(server).post('/users').send(dummyUser);
-    expect(res.body.id).toBe(1);
-    expect(res.body.username).toBe('FrodoBaggins');
-    expect(res.body.password).not.toBe('melon');
+    beforeEach();
+    const user = await request(server).post('/users').send(dummyUser);
+    expect(user).toHaveProperty('id')
+    expect(user).toHaveProperty('username')
+    expect(user).toHaveProperty('password')
   });
   it('make sure we cant register a username already in use', async () => {
     await request(server).post('/users').send(dummyUser);
