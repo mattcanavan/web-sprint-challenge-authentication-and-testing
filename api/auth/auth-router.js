@@ -20,7 +20,6 @@ router.post('/register', (req, res) => {
      //save the new user to the db
      Users.add(credentials)
      .then(newUser => {
-         res.body = newUser;
          res.status(201).json(newUser);
      })
      .catch(error => {
