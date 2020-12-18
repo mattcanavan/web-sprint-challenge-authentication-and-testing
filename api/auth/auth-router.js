@@ -20,10 +20,10 @@ router.post('/register', (req, res) => {
      //save the new user to the db
      Users.add(credentials)
      .then(newUser => {
-         res.status(201).json({ data: newUser });
+         res.status(201).json(newUser);
      })
      .catch(error => {
-         res.status(500).json({ message: error.message });
+         res.status(500).json("username taken");
      });
 
  } else {
