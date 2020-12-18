@@ -18,12 +18,12 @@ module.exports = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    res.status(401).json({ message: "missing required token inside of req.headers.authorization."});
+    res.status(401).json({ message: "token required"});
   } else {
     // verify the token provided
     jwt.verify(token, jwtSecret, (err, decoded) => {
       if (err) {
-        res.status(401).json("bad token: " + err.message);
+        res.status(401).json("token invalid");
       } else {
         // since token valid and not expired 
         // tack the decoded token to req and proceed
